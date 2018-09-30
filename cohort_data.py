@@ -105,8 +105,30 @@ def hogwarts_by_house(filename):
 
     # Code goes here
 
-    return all_hogwarts
+    our_data = open(filename,"r")
 
+    for record in our_data:
+        first_name, last_name, house, professor, cohort = record.strip().split("|")
+        if house == "Dumbledore's Army":
+            dumbledores_army.append(last_name)
+        elif house == "Gryffindor":
+            gryffindor.append(last_name)
+        elif house == "Hufflepuff":
+            hufflepuff.append(last_name)
+        elif house == "Ravenclaw":
+            ravenclaw.append(last_name)
+        elif house == "Slytherin":
+            slytherin.append(last_name)
+        elif cohort == "G":
+            ghosts.append(last_name)
+        elif cohort == "I":
+            instructors.append(last_name)
+    houses = ([dumbledores_army, gryffindor, hufflepuff, ravenclaw, slytherin, ghosts, instructors]) 
+
+    for people in houses:
+        all_hogwarts.append(sorted(people))
+
+    return all_hogwarts
 
 def all_students_tuple_list(filename):
     """TODO: Return a list of tuples of student data.
