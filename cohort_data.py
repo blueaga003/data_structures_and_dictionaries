@@ -246,9 +246,22 @@ def find_house_members_by_student_name(student_list):
      """
 
     # Code goes here
+    student_name = input("Choose a student: ").title() 
 
-    return
+    for record in student_list:
+        full_name, house, professor, cohort = record
+        if student_name == full_name:
+           student_cohort = cohort
+           student_house = house
+           print("{} was in the {} cohort.".format(student_name, cohort))
+           print("The following students are also in their house:")
+           break
+    for record in student_list:
+        full_name, house, professor, cohort = record
+        if full_name != student_name and cohort == student_cohort and house == student_house:
+            print(full_name)
 
+(find_house_members_by_student_name(list_of_students))
 
 #############################################################################
 # Here is some useful code to run these functions without doctests!
