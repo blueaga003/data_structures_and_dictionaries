@@ -146,6 +146,13 @@ def all_students_tuple_list(filename):
     student_list = []
 
     # Code goes here
+    our_data = open(filename,"r")
+
+    for record in our_data:
+        first_name, last_name, house, professor, cohort = record.strip().split("|")
+        full_name = first_name + " " + last_name
+        if cohort != "I" and cohort != "G":
+            student_list.append((full_name, house, professor, cohort))
 
     return student_list
 
