@@ -67,11 +67,6 @@ def sort_by_cohort(filename):
         elif cohort == "G":
             ghosts.append(full_name)
 
-    # ourlists = [winter_16, spring_16, summer_16, fall_15, ghosts]
-    
-    # for people in ourlists:
-    #     people = people.sort()
-    
     all_students = [fall_15, winter_16, spring_16, summer_16, ghosts]
 
     return all_students
@@ -199,11 +194,28 @@ def find_name_duplicates(filename):
     {'Weasley'}
 
     """
-
+    our_data = open(filename, "r")
     duplicate_names = set()
 
     # Code goes here
 
+    winter_16 = set()
+    spring_16 = set()
+    summer_16 = set()
+    fall_15 = set()
+
+    for record in our_data:
+        first_name, last_name, house, professor, cohort = record.strip().split("|")
+        if cohort == "Fall 2015":
+            fall_15.add(last_name)
+        elif cohort == "Summer 2016":
+            summer_16.add(last_name)
+        elif cohort == "Spring 2016":
+            spring_16.add(last_name)
+        elif cohort == "Winter 2016":
+            winter_16.add(last_name)
+
+    duplicate_names = winter_16 & spring_16 & summer_16 & fall_15
     return duplicate_names
 
 
@@ -251,9 +263,9 @@ def find_house_members_by_student_name(student_list):
 
 
 
-#if __name__ == "__main__":
-#    import doctest
+if __name__ == "__main__":
+    import doctest
 
-#    result = doctest.testmod()
-#    if result.failed == 0:
-#        print("ALL TESTS PASSED")
+    result = doctest.testmod()
+    if result.failed == 0:
+        print("ALL TESTS PASSED")
