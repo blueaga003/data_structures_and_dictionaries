@@ -75,7 +75,7 @@ def sort_by_cohort(filename):
     # for people in ourlists:
     #     people = people.sort()
     
-    all_students = [fall_15, winter_16, summer_16, spring_16, ghosts]
+    all_students = [fall_15, winter_16, spring_16, summer_16, ghosts]
 
     return all_students
 
