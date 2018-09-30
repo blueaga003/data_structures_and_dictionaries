@@ -1,6 +1,5 @@
 """Functions to parse a file containing student data."""
 
-
 def unique_houses(filename):
     """TODO: Return a set of student houses.
 
@@ -18,10 +17,8 @@ def unique_houses(filename):
     our_data = open(filename, "r")
 
     for record in our_data:
-        #print(record)
         record = record.split("|")
         house = record[2]
-        #print(house)
         date_or_identity = record[4].strip()
         if date_or_identity != "G" and date_or_identity != "I":  
             houses.add(house)
@@ -156,6 +153,7 @@ def all_students_tuple_list(filename):
 
     return student_list
 
+list_of_students = all_students_tuple_list("cohort_data.txt")
 
 def find_cohort_by_student_name(student_list):
     """TODO: Given full name, return student's cohort.
@@ -178,9 +176,13 @@ def find_cohort_by_student_name(student_list):
     """
 
     # Code goes here
-
+    full_name = input("Who are you looking for? ").title()
+    for line in student_list:
+        if line[0] == full_name:
+            return "{} was in the {} cohort.".format(line[0], line[3])
     return "Student not found."
 
+print(find_cohort_by_student_name(list_of_students))
 
 ##########################################################################################
 # Further Study Questions
@@ -249,9 +251,9 @@ def find_house_members_by_student_name(student_list):
 
 
 
-if __name__ == "__main__":
-    import doctest
+#if __name__ == "__main__":
+#    import doctest
 
-    result = doctest.testmod()
-    if result.failed == 0:
-        print("ALL TESTS PASSED")
+#    result = doctest.testmod()
+#    if result.failed == 0:
+#        print("ALL TESTS PASSED")
